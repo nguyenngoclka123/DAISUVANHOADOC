@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bé Sen Việt Địa Chí - Giọng Đọc Tiếng Việt Chuẩn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-pink: #ff6b8b;
+            --primary-green: #2ed573;
+            --dark-green: #1e7e34;
+            --bg-color: #f7f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2f3542;
+            --wood-color: #8B5A2B;
+            --wood-light: #CD853F;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(180deg, #1e7e34 0%, #2ed573 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 20px;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .user-status {
+            margin-top: auto;
+            background: rgba(0,0,0,0.15);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        .user-info {
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .points-badge {
+            background-color: var(--primary-pink);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .top-header {
+            background-color: white;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .app-section {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .app-section.active {
+            display: block;
+        }
+
+        /* --- BÉ SEN ĐỌC SÁCH --- */
+        .ai-container {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 20px;
+            height: calc(100vh - 130px);
+        }
+
+        .avatar-panel {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            overflow-y: auto;
+        }
+
+        .besen-avatar {
+            width: 120px;
+            height: 120px;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .besen-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .audio-player-box {
+            width: 100%;
+            margin-top: 5px;
+            background: #f1f2f6;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .audio-btn {
+            background: var(--dark-green);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        /* --- KỆ SÁCH GỖ --- */
+        .bookcase-box {
+            width: 100%;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .bookcase-title {
+            font-weight: bold;
+            font-size: 13px;
+            color: var(--dark-green);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .bookshelf {
+            background-color: #fcf8f2;
+            border: 4px solid var(--wood-color);
+            border-radius: 8px;
+            padding: 10px 10px 0 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        .shelf-layer {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            padding-bottom: 2px;
+            min-height: 75px;
+            position: relative;
+        }
+
+        .shelf-wood {
+            height: 12px;
+            background: linear-gradient(to bottom, var(--wood-light), var(--wood-color));
+            border-radius: 2px;
+            width: calc(100% + 20px);
+            margin-left: -10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            margin-bottom: 12px;
+        }
+
+        .book-item {
+            width: 85px;
+            height: 65px;
+            padding: 4px;
+            border-radius: 4px 8px 8px 4px;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.2;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: -3px 0 5px rgba(0,0,0,0.3), 2px 0 2px rgba(255,255,255,0.2) inset;
+            border-left: 5px solid rgba(0,0,0,0.2);
+            position: relative;
+            transform-origin: bottom left;
+        }
+
+        .book-blue { background: linear-gradient(135deg, #1e3799, #0652dd); }
+        .book-red { background: linear-gradient(135deg, #b71540, #e84118); }
+        .book-orange { background: linear-gradient(135deg, #e67e22, #f39c12); }
+
+        .book-item:hover, .book-item.active-book {
+            transform: scale(1.1) rotate(-4deg);
+            box-shadow: -5px 5px 10px rgba(0,0,0,0.4);
+            z-index: 5;
+        }
+
+        .book-item.active-book { border: 2px solid #fff; }
+
+        /* --- KHUNG CHAT --- */
+        .chat-panel {
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .chat-history {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .msg {
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            line-height: 1.5;
+            font-size: 15px;
+        }
+
+        .msg.bot {
+            background-color: #e8f5e9;
+            align-self: flex-start;
+            border-top-left-radius: 2px;
+        }
+
+        .msg.user {
+            background-color: var(--primary-pink);
+            color: white;
+            align-self: flex-end;
+            border-top-right-radius: 2px;
+        }
+
+        .reading-view {
+            background: #fffdf9;
+            border: 2px solid #f3e9d2;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-top: 10px;
+            color: #2f3542;
+            border-left: 5px solid #ffa502;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            padding-left: 20px;
+            font-size: 14px;
+        }
+
+        .btn-action {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .btn-send { background: var(--primary-green); color: white; }
+        .btn-mic { background: #5352ed; color: white; }
+
+        /* --- BẢN ĐỒ & TIỆN ÍCH KHÁC --- */
+        .map-container { position: relative; background: #e3f2fd; border-radius: 20px; height: 75%; border: 3px solid #ced6e0; overflow: hidden; }
+        .map-marker { position: absolute; background-color: var(--primary-pink); color: white; padding: 8px 12px; border-radius: 20px; font-weight: bold; font-size: 12px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 107, 139, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(255, 107, 139, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 107, 139, 0); } }
+        .map-popup { position: absolute; bottom: 20px; right: 20px; width: 320px; background: white; border-radius: 15px; padding: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); display: none; border-left: 5px solid var(--primary-green); }
+        .slider { width: 100%; accent-color: var(--primary-green); }
+        .gamification-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .game-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .mission-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid #ffa502; }
+        .quiz-option { display: block; width: 100%; padding: 12px; background: #f1f2f6; border: 1px solid #ddd; border-radius: 10px; margin-top: 10px; cursor: pointer; text-align: left; }
+        .table-users { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .table-users th, .table-users td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 14px; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; }
+        .btn-submit { background: var(--dark-green); color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+    
+.share-toolbar{
+margin-top:12px;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+.share-btn{
+border:none;
+padding:8px 12px;
+border-radius:20px;
+cursor:pointer;
+color:white;
+font-weight:600;
+font-size:12px;
+}
+.fb-btn{background:#1877F2;}
+.zalo-btn{background:#0068FF;}
+.copy-btn{background:#27ae60;}
+
+</style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo-container">
+            <div class="logo-img"><img src="be sen ao choang.jpg" alt="Bé Sen Logo"></div>
+            <div class="logo-text">
+                <h3>Bé Sen Việt Địa Chí</h3>
+                <span>Không Gian Văn Hóa Đọc</span>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" onclick="switchTab('ai-tab')"><i class="fa-solid fa-book-open"></i> Bé Sen Đọc Sách</li>
+            <li class="nav-item" onclick="switchTab('map-tab')"><i class="fa-solid fa-map-location-dot"></i> Bản Đồ Tương Tác</li>
+            <li class="nav-item" onclick="switchTab('game-tab')"><i class="fa-solid fa-gamepad"></i> Thử Thách</li>
+  
+        </ul>
+      
+    </nav>
+
+    <main class="main-content">
+        <header class="top-header">
+            <h2 id="header-title">Trợ Lý Ảo AI "Bé Sen Đọc Sách"</h2>
+            <span style="font-weight: 600; color: var(--dark-green);">Học Tập Địa Lý - Lịch Sử</span>
+        </header>
+
+        <!-- PHÂN HỆ 1: BÉ SEN ĐỌC SÁCH -->
+        <section id="ai-tab" class="app-section active">
+            <div class="ai-container">
+                <div class="avatar-panel">
+                    <div class="besen-avatar"><img src="be sen ao choang.jpg" alt="Bé Sen"></div>
+                    <h3>Bé Sen Tri Thức</h3>
+                    <p style="font-size: 12px; color: #777; margin: 3px 0 10px 0;">Đang trực tuyến</p>
+                    
+                    <div class="audio-player-box">
+                        <span style="font-weight: bold; font-size: 13px;"><i class="fa-solid fa-volume-high"></i> Bộ phát giọng nói Tiếng Việt 🇻🇳</span>
+                        <p id="audio-status" style="font-size: 12px; margin-top:5px; color: #c0392b; font-weight: 500;">Hãy chọn 1 cuốn sách trên kệ để nghe.</p>
+                        <div class="audio-controls">
+                            <button class="audio-btn" onclick="controlAudio('play')" title="Phát bài đọc bằng Tiếng Việt"><i class="fa-solid fa-play"></i></button>
+                            <button class="audio-btn" onclick="controlAudio('pause')" title="Tạm dừng"><i class="fa-solid fa-pause"></i></button>
+                            <button class="audio-btn" style="background:#d63031" onclick="controlAudio('stop')" title="Dừng hẳn"><i class="fa-solid fa-stop"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="bookcase-box">
+                        <span class="bookcase-title"><i class="fa-solid fa-book-bookmark"></i> Kệ sách lịch sử:</span>
+                       <div class="bookshelf">
+    <div class="shelf-layer">
+        <div class="book-item book-blue" id="book-gothap" onclick="selectBook('gothap')">Địa chí Gò Tháp</div>
+        <div class="book-item book-red" id="book-xeoquit" onclick="selectBook('xeoquit')">Chiến khu Xẻo Quít</div>
+        <div class="book-item book-orange" id="book-phobang" onclick="selectBook('phobang')">Lăng Phó Bảng</div>
+    </div>
+    <div class="shelf-wood"></div>
+
+    <div class="shelf-layer">
+        <div class="book-item book-blue" id="book-s4" onclick="selectBook('s4')">Văn hóa Óc Eo</div>
+        <div class="book-item book-red" id="book-s5" onclick="selectBook('s5')">Đồng Tháp Mười</div>
+        <div class="book-item book-orange" id="book-s6" onclick="selectBook('s6')">Khẩn hoang</div>
+    </div>
+    <div class="shelf-wood"></div>
+
+    <div class="shelf-layer">
+        <div class="book-item book-blue" id="book-s7" onclick="selectBook('s7')">Hò Đồng Tháp</div>
+        <div class="book-item book-red" id="book-s8" onclick="selectBook('s8')">Sen hồng quê ta</div>
+        <div class="book-item book-orange" id="book-s9" onclick="selectBook('s9')">Anh hùng</div>
+    </div>
+    <div class="shelf-wood"></div>
+
+    <div class="shelf-layer">
+        <div class="book-item book-blue" id="book-s10" onclick="selectBook('s10')">Làng nghề</div>
+        <div class="book-item book-red" id="book-s11" onclick="selectBook('s11')">Chợ quê</div>
+        <div class="book-item book-orange" id="book-s12" onclick="selectBook('s12')">Về Cao Lãnh</div>
+        <div class="book-item book-blue" id="book-s13" onclick="selectBook('s13')">Ký ức chiến tranh</div>
+    </div>
+    <div class="shelf-wood"></div>
+</div>
+                    </div>
+                </div>
+                
+                <div class="chat-panel">
+                    <div class="chat-history" id="chat-box">
+                        <div class="msg bot">Chào bạn học sinh! Mình đã cập nhật hệ thống giọng đọc rồi nè. Bạn hãy chọn một cuốn sách trên kệ gỗ, sau đó bấm nút PLAY để nghe mình đọc bài bằng tiếng Việt chuẩn nhé!</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <button class="btn-action btn-mic" onclick="simulateVoice()" title="Nói chuyện"><i class="fa-solid fa-microphone"></i></button>
+                        <input type="text" id="user-input" class="chat-input" placeholder="Hỏi Bé Sen ơi..." onkeypress="handleKeyPress(event)">
+                        <button class="btn-action btn-send" onclick="sendMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CÁC PHÂN HỆ KHÁC -->
+        <section id="map-tab" class="app-section">
+            <div class="map-container" id="map-area">
+                <div style="padding: 20px; font-weight: bold; color: #57606f;">[Bản Đồ Số Tương Tác]</div>
+                <div class="map-marker" style="top: 25%; left: 60%;" onclick="showMapPopup('Gò Tháp', 'Khu di tích quốc gia chứa quần thể văn hóa Óc Eo cổ đại.', 'Gò Tháp', 'Thơ Gò Tháp')">📍 Khu di tích Gò Tháp</div>
+                <div class="map-marker" style="top: 60%; left: 35%;" onclick="showMapPopup('Xẻo Quít', 'Căn cứ kháng chiến giữa rừng tràm ngập nước.', 'Xẻo Quít', 'Hò Đồng Tháp')">📍 Căn cứ Xẻo Quít</div>
+                <div class="map-popup" id="map-popup">
+                    <h4 id="pop-title" style="color: var(--dark-green);">Tên Địa Danh</h4>
+                    <p id="pop-desc" style="font-size: 13px; margin: 5px 0; line-height: 1.4;"></p>
+                    <button class="btn-submit" style="font-size:11px; padding: 5px 10px;" onclick="closePopup()">Đóng</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="game-tab" class="app-section">
+            <div class="gamification-grid">
+                <div class="game-card">
+                    <h3><i class="fa-solid fa-trophy" style="color: #ffd32a;"></i> Trắc Nghiệm Tương Tác</h3>
+                    <div id="quiz-box" style="margin-top:15px;">
+                        <p style="font-weight: 600;">Câu hỏi: Cụ Nguyễn Sinh Sắc từng làm nghề gì khi vào sinh sống tại Cao Lãnh?</p>
+                        <button class="quiz-option" onclick="answerQuiz(true)">A. Bốc thuốc Đông y và dạy học cho nhân dân</button>
+                        <button class="quiz-option" onclick="answerQuiz(false)">B. Làm quan triều đình local</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="teacher-tab" class="app-section">
+            <div class="game-card">
+                <h3><i class="fa-solid fa-chart-line"></i> Tiến Độ Học Tập</h3>
+                <table class="table-users">
+                    <thead><tr><th>Học sinh</th><th>Số trang đã đọc</th><th>Điểm số Quiz</th></tr></thead>
+                    <tbody><tr><td>Nguyễn Văn An</td><td>45 trang</td><td>90/100</td></tr></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const bookDatabase = {
+            gothap: {
+                title: "Địa chí Di tích Gò Tháp",
+                content: "Gò Tháp thuộc huyện Tháp Mười, tỉnh Đồng Tháp. Đây là khu di tích trọng điểm quốc gia chứa đựng quần thể phế tích kiến trúc thuộc nền văn hóa Óc Eo cổ đại. Đồng thời, nơi đây là căn cứ kháng chiến oanh liệt của nghĩa quân Thiên Hộ Dương và Đốc Binh Kiều thời kỳ đầu chống Pháp. Những câu hò vè lịch sử ca ngợi sự kiên cường bám đất giữ làng của nhân dân vẫn còn lưu truyền mãi đến nay."
+            },
+            xeoquit: {
+                title: "Lịch sử Chiến khu Xẻo Quít",
+                content: "Xẻo Quít là căn cứ lòng dân vững chắc nằm sâu bên trong rừng tràm ngập nước nguyên sinh của tỉnh Đồng Tháp. Trong cuộc kháng chiến chống Mỹ cứu nước, mặc cho bom đạn cày xới, quân và dân ta vẫn kiên trì bám trụ, tổ chức các trận đánh du kích xuất quỷ nhập thần. Ngày nay, Xẻo Quít vừa là khu di tích lịch sử cách mạng, vừa là khu bảo tồn sinh thái ngập nước đặc trưng của vùng Đất Sen Hồng."
+            },
+            phobang: {
+                title: "Di tích Lăng cụ Phó Bảng Nguyễn Sinh Sắc",
+                content: "Khu di tích Lăng cụ Phó bảng Nguyễn Sinh Sắc tọa lạc ngay trung tâm thành phố Cao Lãnh. Cụ Nguyễn Sinh Sắc là một nhà nho yêu nước thương dân, thân sinh của Chủ tịch Hồ Chí Minh vĩ đại. Sau khi rời quan trường, cụ đã chọn mảnh đất Đồng Tháp làm nơi bốc thuốc chữa bệnh, truyền bá tư tưởng yêu nước cho nhân dân. Di tích là biểu tượng cao quý cho nghĩa tình son sắt, lòng hiếu học và sự tôn kính sâu sắc của nhân dân miền Nam đối với gia đình Bác."
+            },
+			s4: { title: "Văn hóa Óc Eo", content: "Nghiên cứu về nền văn hóa cổ đại tại vùng đất Đồng Tháp." },
+    s5: { title: "Đồng Tháp Mười", content: "Vùng đất sen hồng huyền thoại với hệ sinh thái ngập nước đặc sắc." },
+    s6: { title: "Lịch sử Khẩn hoang", content: "Công cuộc mở đất, khai hoang lập ấp của cha ông ta." },
+    s7: { title: "Hò Đồng Tháp", content: "Khám phá các làn điệu dân ca và điệu hò truyền thống." },
+    s8: { title: "Sen hồng quê ta", content: "Ý nghĩa của hoa sen trong văn hóa người miền Tây." },
+    s9: { title: "Anh hùng dân tộc", content: "Gương sáng của những bậc tiền nhân, chiến sĩ hy sinh." },
+    s10: { title: "Làng nghề truyền thống", content: "Các làng nghề đan lát lục bình, nghề dệt choàng." },
+    s11: { title: "Chợ quê Nam Bộ", content: "Văn hóa chợ nổi và nhịp sống vùng sông nước." },
+    s12: { title: "Đường về Cao Lãnh", content: "Sự chuyển mình của đô thị Cao Lãnh hiện đại." },
+    s13: { title: "Ký ức chiến tranh", content: "Những trang sử hào hùng trong cuộc đấu tranh giữ nước." }
+        };
+
+        let currentActiveBook = null;
+        let studentPoints = 120;
+        let viVoice = null;
+
+        // TÌM VÀ ĐỊNH VỊ GIỌNG ĐỌC TIẾNG VIỆT TRÊN HỆ THỐNG
+        function loadVietnameseVoice() {
+            if (typeof speechSynthesis === 'undefined') return;
+            const voices = speechSynthesis.getVoices();
+            // Lọc ra các giọng đọc có mã quốc gia là 'vi' hoặc 'vi-VN'
+            const targetVoices = voices.filter(v => v.lang.includes('vi') || v.lang.includes('VI'));
+            
+            if (targetVoices.length > 0) {
+                // Ưu tiên chọn giọng đọc tự nhiên của Google hoặc Microsoft Việt Nam nếu có
+                viVoice = targetVoices.find(v => v.name.toLowerCase().includes('google') || v.name.toLowerCase().includes('microsoft')) || targetVoices[0];
+            }
+        }
+
+        loadVietnameseVoice();
+        if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVietnameseVoice;
+        }
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.app-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function selectBook(bookId) {
+            window.speechSynthesis.cancel(); 
+            const book = bookDatabase[bookId];
+            if(!book) return;
+
+            currentActiveBook = book;
+            const chatBox = document.getElementById('chat-box');
+
+            document.querySelectorAll('.book-item').forEach(item => item.classList.remove('active-book'));
+            document.getElementById(`book-${bookId}`).classList.add('active-book');
+
+            const bookMsg = document.createElement('div');
+            bookMsg.className = "msg bot";
+            bookMsg.innerHTML = `
+                <div style="font-weight: bold; font-size: 15px; color: var(--dark-green);">📚 Bạn đang xem: ${book.title}</div>
+                <div class="reading-view">${book.content}</div>
+                <div class="share-toolbar">
+                    <button class="share-btn fb-btn" onclick="shareFacebook('${book.title}','${book.content}')"><i class="fab fa-facebook-f"></i> Facebook</button>
+                    <button class="share-btn zalo-btn" onclick="shareZalo('${book.title}','${book.content}')">Zalo</button>
+                    <button class="share-btn copy-btn" onclick="copyArticle('${book.title}','${book.content}')"><i class="fa-solid fa-copy"></i> Sao chép</button>
+                </div>
+            `;
+            chatBox.appendChild(bookMsg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            document.getElementById('audio-status').innerHTML = `<span style="color:#2f3542;"><i class="fa-solid fa-file-audio"></i> Đã chọn: ${book.title}. Sẵn sàng phát!</span>`;
+        }
+
+        // ĐIỀU KHIỂN ÂM THANH - ÉP CHUYỂN SANG TIẾNG VIỆT KHÔNG LỖI
+        function controlAudio(action) {
+            const status = document.getElementById('audio-status');
+            if (!currentActiveBook) {
+                alert("Bạn vui lòng chọn một cuốn sách lịch sử trên kệ gỗ trước nhé!");
+                return;
+            }
+
+            if (action === 'play') {
+                if (window.speechSynthesis.paused) {
+                    window.speechSynthesis.resume();
+                    status.innerHTML = `<span style="color:var(--primary-pink); font-weight: bold;"><i class="fa-solid fa-compact-disc fa-spin"></i> Đang đọc tiếp bài...</span>`;
+                    return;
+                }
+
+                window.speechSynthesis.cancel(); // Reset luồng cũ
+
+                // Khởi tạo luồng đọc mới
+                const utterance = new SpeechSynthesisUtterance(currentActiveBook.content);
+                
+                // Cấu hình bắt buộc công cụ chuyển văn bản thành giọng nói dùng bộ giải mã Tiếng Việt
+                utterance.lang = 'vi-VN'; 
+                if (viVoice) {
+                    utterance.voice = viVoice;
+                }
+                utterance.rate = 1.0; // Tốc độ đọc vừa phải
+                utterance.pitch = 1.0;
+
+                utterance.onend = () => {
+                    status.innerHTML = `<span style="color:var(--primary-green); font-weight: bold;"><i class="fa-solid fa-circle-check"></i> Đã hoàn thành bài đọc!</span>`;
+                };
+
+                window.speechSynthesis.speak(utterance);
+                status.innerHTML = `<span style="color:var(--primary-green); font-weight: bold;"><i class="fa-solid fa-compact-disc fa-spin"></i> Đang phát giọng Tiếng Việt chuẩn...</span>`;
+            
+            } else if (action === 'pause') {
+                if (window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+                    window.speechSynthesis.pause();
+                    status.innerHTML = `<span style="color:#ffa502; font-weight: bold;"><i class="fa-solid fa-pause"></i> Đã tạm dừng đọc.</span>`;
+                }
+            } else if (action === 'stop') {
+                window.speechSynthesis.cancel();
+                status.innerHTML = `<span style="color:#777;"><i class="fa-solid fa-circle-stop"></i> Đã dừng hẳn bài đọc.</span>`;
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const chatBox = document.getElementById('chat-box');
+            if (input.value.trim() === "") return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = "msg user";
+            userMsg.innerText = input.value;
+            chatBox.appendChild(userMsg);
+
+            let val = input.value.toLowerCase();
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                if(val.includes("gò tháp")) selectBook('gothap');
+                else if(val.includes("xẻo quít")) selectBook('xeoquit');
+                else if(val.includes("phó bảng")) selectBook('phobang');
+            }, 500);
+        }
+
+        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+        function simulateVoice() { alert("Chức năng ghi âm đang kết nối microphone!"); }
+        function showMapPopup(title, desc) { document.getElementById('pop-title').innerText = title; document.getElementById('pop-desc').innerText = desc; document.getElementById('map-popup').style.display = 'block'; }
+        function closePopup() { document.getElementById('map-popup').style.display = 'none'; }
+        function answerQuiz(isCorrect) { if(isCorrect) alert("Chúc mừng bạn trả lời đúng!"); }
+    
+function shareFacebook(title,content){
+ const text = title + "\n\n" + content;
+ const url = "https://www.facebook.com/sharer/sharer.php?quote=" + encodeURIComponent(text) + "&u=" + encodeURIComponent(location.href);
+ window.open(url,"_blank");
+}
+
+function shareZalo(title,content){
+ const text = title + "\n\n" + content;
+ const url = "https://zalo.me/share?text=" + encodeURIComponent(text);
+ window.open(url,"_blank");
+}
+
+function copyArticle(title,content){
+ navigator.clipboard.writeText(title + "\n\n" + content);
+ alert("Đã sao chép bài đọc!");
+}
+
+</script>
+</body>
+</html>
