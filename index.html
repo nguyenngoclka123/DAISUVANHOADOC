@@ -235,85 +235,63 @@
             opacity: 0.9;
         }
 
-        /* --- KỆ SÁCH GỖ --- */
-        .bookcase-box {
-            width: 100%;
-            margin-top: 15px;
-            text-align: left;
-        }
+        
+/* --- KỆ SÁCH 3D --- */
+.bookcase-box{width:100%;margin-top:15px;text-align:left;}
+.bookcase-title{font-weight:bold;font-size:13px;color:var(--dark-green);margin-bottom:8px;display:block;}
+.bookshelf{
+background:linear-gradient(180deg,#fdf6e3,#f8edd1);
+border:8px solid #6b3f1d;
+border-radius:18px;
+padding:20px;
+box-shadow:inset 0 0 30px rgba(0,0,0,.15),0 10px 30px rgba(0,0,0,.2);
+}
+.shelf-layer{
+display:flex;
+justify-content:center;
+align-items:flex-end;
+gap:8px;
+min-height:120px;
+}
+.shelf-wood{
+height:16px;
+background:linear-gradient(to bottom,#c68642,#8b5a2b);
+border-radius:4px;
+margin:8px -20px 18px -20px;
+box-shadow:0 6px 10px rgba(0,0,0,.3);
+}
+.book-item{
+width:58px;
+height:95px;
+padding:6px;
+border-radius:4px 8px 8px 4px;
+color:#fff;
+font-size:11px;
+font-weight:700;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+cursor:pointer;
+writing-mode: horizontal-tb;
 
-        .bookcase-title {
-            font-weight: bold;
-            font-size: 13px;
-            color: var(--dark-green);
-            margin-bottom: 8px;
-            display: block;
-        }
+border-left:6px solid rgba(0,0,0,.25);
+box-shadow:-4px 0 6px rgba(0,0,0,.3), inset 2px 0 3px rgba(255,255,255,.2);
+transition:all .35s ease;
+}
+.book-blue{background:linear-gradient(135deg,#1e3799,#0c2461);}
+.book-red{background:linear-gradient(135deg,#c0392b,#8e0000);}
+.book-orange{background:linear-gradient(135deg,#f39c12,#d35400);}
+.book-item:hover{
+transform:translateY(-12px) rotate(-4deg) scale(1.08);
+z-index:10;
+}
+.book-item.active-book{
+transform:translateY(-18px) rotate(-5deg) scale(1.12);
+border:3px solid #fff;
+}
+/* --- KHUNG CHAT --- */
 
-        .bookshelf {
-            background-color: #fcf8f2;
-            border: 4px solid var(--wood-color);
-            border-radius: 8px;
-            padding: 10px 10px 0 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 0px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
-        }
-
-        .shelf-layer {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            padding-bottom: 2px;
-            min-height: 75px;
-            position: relative;
-        }
-
-        .shelf-wood {
-            height: 12px;
-            background: linear-gradient(to bottom, var(--wood-light), var(--wood-color));
-            border-radius: 2px;
-            width: calc(100% + 20px);
-            margin-left: -10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-            margin-bottom: 12px;
-        }
-
-        .book-item {
-            width: 85px;
-            height: 65px;
-            padding: 4px;
-            border-radius: 4px 8px 8px 4px;
-            cursor: pointer;
-            font-size: 10px;
-            font-weight: 700;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            line-height: 1.2;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: -3px 0 5px rgba(0,0,0,0.3), 2px 0 2px rgba(255,255,255,0.2) inset;
-            border-left: 5px solid rgba(0,0,0,0.2);
-            position: relative;
-            transform-origin: bottom left;
-        }
-
-        .book-blue { background: linear-gradient(135deg, #1e3799, #0652dd); }
-        .book-red { background: linear-gradient(135deg, #b71540, #e84118); }
-        .book-orange { background: linear-gradient(135deg, #e67e22, #f39c12); }
-
-        .book-item:hover, .book-item.active-book {
-            transform: scale(1.1) rotate(-4deg);
-            box-shadow: -5px 5px 10px rgba(0,0,0,0.4);
-            z-index: 5;
-        }
-
-        .book-item.active-book { border: 2px solid #fff; }
-
-        /* --- KHUNG CHAT --- */
         .chat-panel {
             background: white;
             border-radius: 20px;
@@ -432,6 +410,66 @@ font-size:12px;
 .zalo-btn{background:#0068FF;}
 .copy-btn{background:#27ae60;}
 
+
+/* Nâng cấp kệ sách */
+.book-item{
+    position:relative !important;
+    width:60px !important;
+    height:110px !important;
+}
+.book-item::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    width:8px;
+    height:100%;
+    background:rgba(0,0,0,.25);
+}
+.book-item:hover{
+    transform:translateY(-15px) rotate(-5deg) scale(1.10) !important;
+    box-shadow:0 14px 24px rgba(0,0,0,.35) !important;
+}
+.shelf-wood{
+    height:18px !important;
+    box-shadow:0 6px 12px rgba(0,0,0,.35) !important;
+}
+
+
+.question-btn{background:#9b59b6;color:#fff;}
+.question-card{background:#eaf4e8;border-radius:18px;padding:16px;margin-top:15px;max-width:420px;animation:fadeIn .3s ease;}
+.question-title{color:#9b59b6;font-weight:700;font-size:22px;}
+.question-text{margin-top:8px;margin-bottom:12px;font-size:16px;}
+.question-option{width:100%;padding:12px;margin:8px 0;border:1px solid #dcdcdc;border-radius:12px;background:#fff;cursor:pointer;text-align:left;}
+.correct{background:#2ecc71!important;color:white;}
+.wrong{background:#e74c3c!important;color:white;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+
+.visitor-card{
+margin-top:15px;
+padding:18px;
+border-radius:18px;
+text-align:center;
+background:linear-gradient(135deg,#ffffff,#f1fff5);
+color:#1e7e34;
+box-shadow:0 8px 20px rgba(0,0,0,.15), inset 0 0 15px rgba(46,213,115,.15);
+border:2px solid rgba(255,255,255,.5);
+}
+.visitor-icon{
+width:60px;height:60px;margin:auto;border-radius:50%;
+background:linear-gradient(135deg,#2ed573,#1e7e34);
+color:white;display:flex;align-items:center;justify-content:center;
+font-size:26px;box-shadow:0 5px 15px rgba(0,0,0,.25);
+animation:pulseVisit 2s infinite;
+}
+.visitor-title{margin-top:10px;font-size:13px;font-weight:700;letter-spacing:1px;}
+.visitor-number{font-size:34px;font-weight:800;color:#ff6b8b;margin:8px 0;text-shadow:2px 2px 6px rgba(0,0,0,.15);}
+.visitor-text{font-size:12px;color:#666;}
+@keyframes pulseVisit{
+0%{transform:scale(1);}50%{transform:scale(1.08);}100%{transform:scale(1);}
+}
+
 </style>
 </head>
 <body>
@@ -446,17 +484,27 @@ font-size:12px;
         </div>
         <ul class="nav-menu">
             <li class="nav-item active" onclick="switchTab('ai-tab')"><i class="fa-solid fa-book-open"></i> Bé Sen Đọc Sách</li>
-            <li class="nav-item" onclick="switchTab('map-tab')"><i class="fa-solid fa-map-location-dot"></i> Bản Đồ Tương Tác</li>
-            <li class="nav-item" onclick="switchTab('game-tab')"><i class="fa-solid fa-gamepad"></i> Thử Thách</li>
+     
   
         </ul>
       
-    </nav>
+    
+
+<div class="visitor-card">
+    <div class="visitor-icon">
+        <i class="fa-solid fa-eye"></i>
+    </div>
+    <div class="visitor-title">LƯỢT TRUY CẬP</div>
+    <div id="visitorCount" class="visitor-number">0</div>
+    <div class="visitor-text">Người đã ghé thăm</div>
+</div>
+</nav>
+
 
     <main class="main-content">
         <header class="top-header">
             <h2 id="header-title">Trợ Lý Ảo AI "Bé Sen Đọc Sách"</h2>
-            <span style="font-weight: 600; color: var(--dark-green);">Học Tập Địa Lý - Lịch Sử</span>
+            <span style="font-weight: 600; color: var(--dark-green);">Tác giả: Nguyễn Ngọc Minh Anh Lớp 7A1 <BR> TRƯỜNG THCS LONG KHÁNH A</span>
         </header>
 
         <!-- PHÂN HỆ 1: BÉ SEN ĐỌC SÁCH -->
@@ -468,7 +516,7 @@ font-size:12px;
                     <p style="font-size: 12px; color: #777; margin: 3px 0 10px 0;">Đang trực tuyến</p>
                     
                     <div class="audio-player-box">
-                        <span style="font-weight: bold; font-size: 13px;"><i class="fa-solid fa-volume-high"></i> Bộ phát giọng nói Tiếng Việt 🇻🇳</span>
+                        <span style="font-weight: bold; font-size: 13px;"><i class="fa-solid fa-volume-high"></i> </span>
                         <p id="audio-status" style="font-size: 12px; margin-top:5px; color: #c0392b; font-weight: 500;">Hãy chọn 1 cuốn sách trên kệ để nghe.</p>
                         <div class="audio-controls">
                             <button class="audio-btn" onclick="controlAudio('play')" title="Phát bài đọc bằng Tiếng Việt"><i class="fa-solid fa-play"></i></button>
@@ -528,66 +576,70 @@ font-size:12px;
         <!-- CÁC PHÂN HỆ KHÁC -->
         <section id="map-tab" class="app-section">
             <div class="map-container" id="map-area">
-                <div style="padding: 20px; font-weight: bold; color: #57606f;">[Bản Đồ Số Tương Tác]</div>
-                <div class="map-marker" style="top: 25%; left: 60%;" onclick="showMapPopup('Gò Tháp', 'Khu di tích quốc gia chứa quần thể văn hóa Óc Eo cổ đại.', 'Gò Tháp', 'Thơ Gò Tháp')">📍 Khu di tích Gò Tháp</div>
-                <div class="map-marker" style="top: 60%; left: 35%;" onclick="showMapPopup('Xẻo Quít', 'Căn cứ kháng chiến giữa rừng tràm ngập nước.', 'Xẻo Quít', 'Hò Đồng Tháp')">📍 Căn cứ Xẻo Quít</div>
-                <div class="map-popup" id="map-popup">
-                    <h4 id="pop-title" style="color: var(--dark-green);">Tên Địa Danh</h4>
-                    <p id="pop-desc" style="font-size: 13px; margin: 5px 0; line-height: 1.4;"></p>
-                    <button class="btn-submit" style="font-size:11px; padding: 5px 10px;" onclick="closePopup()">Đóng</button>
-                </div>
+                
             </div>
         </section>
 
-        <section id="game-tab" class="app-section">
-            <div class="gamification-grid">
-                <div class="game-card">
-                    <h3><i class="fa-solid fa-trophy" style="color: #ffd32a;"></i> Trắc Nghiệm Tương Tác</h3>
-                    <div id="quiz-box" style="margin-top:15px;">
-                        <p style="font-weight: 600;">Câu hỏi: Cụ Nguyễn Sinh Sắc từng làm nghề gì khi vào sinh sống tại Cao Lãnh?</p>
-                        <button class="quiz-option" onclick="answerQuiz(true)">A. Bốc thuốc Đông y và dạy học cho nhân dân</button>
-                        <button class="quiz-option" onclick="answerQuiz(false)">B. Làm quan triều đình local</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+       
 
-        <section id="teacher-tab" class="app-section">
-            <div class="game-card">
-                <h3><i class="fa-solid fa-chart-line"></i> Tiến Độ Học Tập</h3>
-                <table class="table-users">
-                    <thead><tr><th>Học sinh</th><th>Số trang đã đọc</th><th>Điểm số Quiz</th></tr></thead>
-                    <tbody><tr><td>Nguyễn Văn An</td><td>45 trang</td><td>90/100</td></tr></tbody>
-                </table>
-            </div>
-        </section>
+     
     </main>
 
     <script>
-        const bookDatabase = {
-            gothap: {
-                title: "Địa chí Di tích Gò Tháp",
-                content: "Gò Tháp thuộc huyện Tháp Mười, tỉnh Đồng Tháp. Đây là khu di tích trọng điểm quốc gia chứa đựng quần thể phế tích kiến trúc thuộc nền văn hóa Óc Eo cổ đại. Đồng thời, nơi đây là căn cứ kháng chiến oanh liệt của nghĩa quân Thiên Hộ Dương và Đốc Binh Kiều thời kỳ đầu chống Pháp. Những câu hò vè lịch sử ca ngợi sự kiên cường bám đất giữ làng của nhân dân vẫn còn lưu truyền mãi đến nay."
-            },
-            xeoquit: {
-                title: "Lịch sử Chiến khu Xẻo Quít",
-                content: "Xẻo Quít là căn cứ lòng dân vững chắc nằm sâu bên trong rừng tràm ngập nước nguyên sinh của tỉnh Đồng Tháp. Trong cuộc kháng chiến chống Mỹ cứu nước, mặc cho bom đạn cày xới, quân và dân ta vẫn kiên trì bám trụ, tổ chức các trận đánh du kích xuất quỷ nhập thần. Ngày nay, Xẻo Quít vừa là khu di tích lịch sử cách mạng, vừa là khu bảo tồn sinh thái ngập nước đặc trưng của vùng Đất Sen Hồng."
-            },
-            phobang: {
-                title: "Di tích Lăng cụ Phó Bảng Nguyễn Sinh Sắc",
-                content: "Khu di tích Lăng cụ Phó bảng Nguyễn Sinh Sắc tọa lạc ngay trung tâm thành phố Cao Lãnh. Cụ Nguyễn Sinh Sắc là một nhà nho yêu nước thương dân, thân sinh của Chủ tịch Hồ Chí Minh vĩ đại. Sau khi rời quan trường, cụ đã chọn mảnh đất Đồng Tháp làm nơi bốc thuốc chữa bệnh, truyền bá tư tưởng yêu nước cho nhân dân. Di tích là biểu tượng cao quý cho nghĩa tình son sắt, lòng hiếu học và sự tôn kính sâu sắc của nhân dân miền Nam đối với gia đình Bác."
-            },
-			s4: { title: "Văn hóa Óc Eo", content: "Nghiên cứu về nền văn hóa cổ đại tại vùng đất Đồng Tháp." },
-    s5: { title: "Đồng Tháp Mười", content: "Vùng đất sen hồng huyền thoại với hệ sinh thái ngập nước đặc sắc." },
-    s6: { title: "Lịch sử Khẩn hoang", content: "Công cuộc mở đất, khai hoang lập ấp của cha ông ta." },
-    s7: { title: "Hò Đồng Tháp", content: "Khám phá các làn điệu dân ca và điệu hò truyền thống." },
-    s8: { title: "Sen hồng quê ta", content: "Ý nghĩa của hoa sen trong văn hóa người miền Tây." },
-    s9: { title: "Anh hùng dân tộc", content: "Gương sáng của những bậc tiền nhân, chiến sĩ hy sinh." },
-    s10: { title: "Làng nghề truyền thống", content: "Các làng nghề đan lát lục bình, nghề dệt choàng." },
-    s11: { title: "Chợ quê Nam Bộ", content: "Văn hóa chợ nổi và nhịp sống vùng sông nước." },
-    s12: { title: "Đường về Cao Lãnh", content: "Sự chuyển mình của đô thị Cao Lãnh hiện đại." },
-    s13: { title: "Ký ức chiến tranh", content: "Những trang sử hào hùng trong cuộc đấu tranh giữ nước." }
-        };
+       const bookDatabase = {
+    gothap: {
+        title: "Địa chí Di tích Gò Tháp",
+        content: "Gò Tháp thuộc huyện Tháp Mười, tỉnh Đồng Tháp. Đây là khu di tích trọng điểm quốc gia chứa đựng quần thể phế tích kiến trúc thuộc nền văn hóa Óc Eo cổ đại. Đồng thời, nơi đây là căn cứ kháng chiến oanh liệt của nghĩa quân Thiên Hộ Dương và Đốc Binh Kiều thời kỳ đầu chống Pháp. Những câu hò vè lịch sử ca ngợi sự kiên cường bám đất giữ làng của nhân dân vẫn còn lưu truyền mãi đến nay. Ngày nay, Gò Tháp không chỉ là điểm đến tâm linh mà còn là nơi lưu giữ những minh chứng khảo cổ học quan trọng, giúp các thế hệ mai sau thấu hiểu về một vương quốc Phù Nam thịnh vượng từng tồn tại trong quá khứ. Các công trình như đền thờ, di chỉ gạch cổ đều phản ánh trình độ điêu khắc và kiến trúc bậc thầy của cư dân cổ vùng Đồng Tháp Mười. Hằng năm, lễ hội Gò Tháp thu hút hàng ngàn du khách thập phương về chiêm bái, gợi nhớ về đạo lý 'uống nước nhớ nguồn'. Không gian văn hóa nơi đây là sự hòa quyện giữa vẻ đẹp tâm linh huyền bí và tinh thần hào hùng của những người con trung kiên, biến vùng đất trũng năm nào trở thành điểm tựa tinh thần vững chãi, khơi dậy niềm tự hào về truyền thống yêu nước bất khuất của dân tộc Việt Nam."
+    },
+    xeoquit: {
+        title: "Lịch sử Chiến khu Xẻo Quít",
+        content: "Xẻo Quít là căn cứ lòng dân vững chắc nằm sâu bên trong rừng tràm ngập nước nguyên sinh của tỉnh Đồng Tháp. Trong cuộc kháng chiến chống Mỹ cứu nước, mặc cho bom đạn cày xới, quân và dân ta vẫn kiên trì bám trụ, tổ chức các trận đánh du kích xuất quỷ nhập thần. Ngày nay, Xẻo Quít vừa là khu di tích lịch sử cách mạng, vừa là khu bảo tồn sinh thái ngập nước đặc trưng của vùng Đất Sen Hồng. Bước vào Xẻo Quít, du khách như lạc vào một thế giới xanh mát với hệ thống kênh rạch chằng chịt, cây cỏ hòa quyện cùng dấu tích chiến tranh như hầm bí mật, lán trại, và bếp Hoàng Cầm. Những giá trị lịch sử không chỉ nằm ở các hiện vật mà còn thấm đẫm trong từng tấc đất nơi đây, nơi tinh thần đồng đội và tình quân dân được kết tinh bền chặt. Việc bảo tồn Xẻo Quít giúp thế hệ trẻ hôm nay hình dung rõ nét về cuộc chiến tranh gian khổ nhưng vô cùng vẻ vang. Những con xuồng ba lá đưa khách len lỏi qua rừng tràm không chỉ mang lại trải nghiệm du lịch sinh thái thú vị, mà còn là hành trình ngược thời gian, cảm nhận sâu sắc sự hy sinh của cha ông để đổi lấy hòa bình, độc lập cho quê hương."
+    },
+    phobang: {
+        title: "Di tích Lăng cụ Phó Bảng Nguyễn Sinh Sắc",
+        content: "Khu di tích Lăng cụ Phó bảng Nguyễn Sinh Sắc tọa lạc ngay trung tâm thành phố Cao Lãnh. Cụ Nguyễn Sinh Sắc là một nhà nho yêu nước thương dân, thân sinh của Chủ tịch Hồ Chí Minh vĩ đại. Sau khi rời quan trường, cụ đã chọn mảnh đất Đồng Tháp làm nơi bốc thuốc chữa bệnh, truyền bá tư tưởng yêu nước cho nhân dân. Di tích là biểu tượng cao quý cho nghĩa tình son sắt, lòng hiếu học và sự tôn kính sâu sắc của nhân dân miền Nam đối với gia đình Bác. Không gian di tích bao gồm đền thờ, lăng mộ và tái hiện không gian làng Hòa An xưa, nơi cụ từng sống những năm tháng cuối đời đầy bình dị nhưng cao cả. Mỗi nhành cây, khóm hoa trong vườn đều gợi nhắc về phong thái ung dung, đức độ của cụ Phó Bảng. Đây không chỉ là nơi tham quan, mà còn là địa chỉ đỏ giáo dục truyền thống cách mạng, đạo đức lối sống cho học sinh, sinh viên và nhân dân cả nước. Việc giữ gìn lăng mộ cụ Phó Bảng thể hiện nét đẹp văn hóa truyền thống của người dân Đồng Tháp: trọng nghĩa, trọng tình, luôn nhớ về cội nguồn. Nơi đây mãi là biểu tượng thiêng liêng, kết nối tình cảm của đồng bào cả nước hướng về Bác Hồ và người thân của Người."
+    },
+    s4: { 
+        title: "Văn hóa Óc Eo", 
+        content: "Văn hóa Óc Eo là một nền văn hóa cổ đại rực rỡ, để lại những dấu ấn đậm nét tại vùng đất Đồng Tháp. Cuốn sách đưa người đọc ngược dòng lịch sử, tìm hiểu về đời sống của cư dân Phù Nam thông qua các hiện vật khảo cổ học độc đáo như tượng thần, mảnh gốm, trang sức bằng vàng và các khối đá khắc ký tự. Đây là minh chứng cho một nền kinh tế thương mại phát triển, nơi giao thương hàng hải nhộn nhịp kết nối khu vực với thế giới cổ đại. Tác phẩm đi sâu vào việc giải mã các cấu trúc đền đài được xây dựng từ gạch cổ, phân tích kỹ thuật chế tác thủ công tinh xảo của người xưa. Bên cạnh đó, sách còn nêu bật mối quan hệ giữa môi trường tự nhiên ngập nước với cách tổ chức xã hội, lối sống của cư dân thời bấy giờ. Thông qua những nghiên cứu khoa học và hình ảnh tư liệu phong phú, độc giả sẽ có cái nhìn tổng quan về sự thịnh vượng, trình độ văn minh cao của nền văn hóa Óc Eo. Đây không chỉ là hành trình tìm về cội nguồn văn hóa của vùng đất phương Nam, mà còn là sự tôn vinh trí tuệ sáng tạo, tâm hồn phong phú của tổ tiên ta trong quá trình khai khẩn vùng đất mới, tạo nên bản sắc độc đáo cho văn hóa Đồng Tháp hôm nay."
+    },
+    s5: { 
+        title: "Đồng Tháp Mười", 
+        content: "Đồng Tháp Mười – vùng đất sen hồng huyền thoại – là niềm tự hào của người dân miền Tây với hệ sinh thái ngập nước vô cùng đặc sắc và phong phú. Cuốn sách dẫn dắt độc giả khám phá vẻ đẹp kỳ vĩ của những cánh đồng sen bát ngát, nơi mùi hương thơm ngát hòa quyện vào không khí, tạo nên một không gian thanh bình đậm chất quê hương. Không chỉ dừng lại ở cảnh sắc, sách còn mô tả sự đa dạng sinh học của các loài động thực vật quý hiếm, những khu rừng tràm xanh thẳm, và hệ thống kênh rạch chằng chịt nuôi dưỡng cuộc sống của biết bao thế hệ. Độc giả sẽ được tìm hiểu về quá trình con người hòa mình vào thiên nhiên, khai thác và bảo tồn nguồn lợi thủy sản, phát triển các mô hình du lịch sinh thái bền vững. Những câu chuyện kể về mùa nước nổi, về những đêm trăng nghe tiếng sáo diều trên cánh đồng, hay nhịp sống lặng lẽ nhưng đầy sức sống của người dân vùng lũ sẽ được tái hiện chân thực. Qua từng trang viết, cuốn sách không chỉ giúp chúng ta yêu hơn cảnh đẹp quê hương, mà còn nhắc nhở về trách nhiệm bảo vệ môi trường, giữ gìn nét đẹp hoang sơ của một vùng đất vốn được ví như 'lá phổi xanh' của vùng Đồng bằng sông Cửu Long."
+    },
+    s6: { 
+        title: "Lịch sử Khẩn hoang", 
+        content: "Công cuộc mở đất, khai hoang lập ấp của cha ông ta là một thiên hùng ca đầy máu và nước mắt. Cuốn sách tái hiện chặng đường gian khó khi những lưu dân miền Trung, miền Bắc xuôi dòng phương Nam, đối mặt với thú dữ, dịch bệnh và thiên nhiên khắc nghiệt. Những trang sử ghi lại hành trình 'xẻ dọc Trường Sơn' tìm đất sống, cách họ dùng trí tuệ và sự cần cù để thuần phục vùng Đồng Tháp Mười hoang sơ, biến những bưng biền đầy phèn mặn thành cánh đồng bát ngát phù sa. Sách tập trung vào tinh thần đoàn kết của cộng đồng, nơi tình nghĩa xóm giềng được gắn kết qua những buổi cùng nhau đắp đê, khơi dòng, hay những đêm lửa trại kể cho nhau nghe chuyện quê hương cũ. Thông qua những tư liệu lịch sử, những câu chuyện về các bậc tiền nhân có công khai phá, người đọc sẽ hiểu hơn về quá trình hình thành nên bản sắc con người Nam Bộ: hào sảng, phóng khoáng, trọng nghĩa khinh tài. Đây không chỉ là tài liệu lịch sử, mà còn là nguồn cảm hứng giúp thế hệ hôm nay trân trọng hơn thành quả lao động của cha ông, thấu hiểu giá trị của sự hòa hợp giữa con người và thiên nhiên để xây dựng cuộc sống ấm no như hiện nay."
+    },
+    s7: { 
+        title: "Hò Đồng Tháp", 
+        content: "Khám phá các làn điệu dân ca và điệu hò truyền thống là hành trình tìm về tâm hồn của người dân Đất Sen Hồng. Cuốn sách đưa độc giả bước vào thế giới âm nhạc dân gian đậm đà bản sắc, nơi những câu hò đối đáp vang vọng trên những cánh đồng, dưới mái chèo ghe trên sông nước. Tác giả đi sâu vào tìm hiểu nguồn gốc, nhịp điệu và lời ca của hò Đồng Tháp – từ những điệu hò cấy, hò cấy lúa cho đến hò giã gạo, hò kéo lưới. Mỗi điệu hò không chỉ là phương thức giải trí sau những giờ lao động vất vả, mà còn là công cụ biểu đạt tình cảm, nỗi niềm và ước vọng của con người về một cuộc sống yên bình, hạnh phúc. Sách ghi lại những ký ức của các nghệ nhân dân gian, những người đang miệt mài lưu giữ ngọn lửa nghề cho thế hệ mai sau. Qua những trang sách, ta thấy được sự tinh tế trong ca từ, sự khéo léo trong cách gieo vần và sự gắn kết cộng đồng mà âm nhạc mang lại. Đây là nhịp cầu nối quá khứ với hiện tại, khẳng định vị thế của âm nhạc dân gian trong kho tàng văn hóa phi vật thể của dân tộc, đồng thời lan tỏa niềm yêu thích nghệ thuật truyền thống đến mọi tầng lớp độc giả."
+    },
+    s8: { 
+        title: "Sen hồng quê ta", 
+        content: "Hoa sen không chỉ là loài cây quen thuộc mà còn là biểu tượng tinh thần, linh hồn của vùng đất Đồng Tháp. Cuốn sách đi sâu tìm hiểu ý nghĩa văn hóa của hoa sen trong đời sống tâm linh, ẩm thực và nghệ thuật của người miền Tây. Từ những đóa sen nở rộ trên mặt hồ, đến sự đa dạng của các giống sen, sách mô tả tỉ mỉ vòng đời của cây sen – từ bùn lầy vươn lên tinh khiết. Độc giả sẽ bất ngờ trước tính ứng dụng của sen: từ ngó sen, hạt sen, cánh hoa đến tâm sen đều trở thành những nguyên liệu quý giá cho ẩm thực đặc sản và y học dân gian. Hơn thế nữa, sen đã thấm đẫm vào thi ca, nhạc họa, trở thành đề tài sáng tác bất tận, biểu trưng cho khí chất kiên cường nhưng cũng đầy dịu dàng, thanh cao của con người nơi đây. Cuốn sách còn khai thác những câu chuyện về nghề trồng sen, những lễ hội tôn vinh hoa sen và nỗ lực đưa thương hiệu 'Sen hồng' vươn xa. Qua đó, độc giả không chỉ có thêm kiến thức về loài hoa này mà còn cảm nhận sâu sắc hơn về tình yêu quê hương, ý thức giữ gìn bản sắc văn hóa gắn liền với biểu tượng cao quý – một vẻ đẹp trường tồn của vùng Đất Sen Hồng."
+    },
+    s9: { 
+        title: "Anh hùng dân tộc", 
+        content: "Cuốn sách là tập hợp những gương sáng về các bậc tiền nhân, chiến sĩ đã hiến dâng cả tuổi thanh xuân cho sự nghiệp giải phóng dân tộc tại vùng đất Đồng Tháp. Từ những thủ lĩnh nghĩa quân chống Pháp như Thiên Hộ Dương, Đốc Binh Kiều, đến những anh hùng trong cuộc kháng chiến chống Mỹ như các cô, các chú du kích, chiến sĩ đặc công trên chiến trường Xẻo Quít. Sách không chỉ mô tả những chiến công vang dội, mà còn khắc họa đời sống bình dị, tình cảm yêu thương đồng chí, đồng đội và tấm lòng trung thành với quê hương. Qua mỗi trang viết, người đọc sẽ cảm nhận được sự khốc liệt của chiến tranh cũng như tinh thần lạc quan, ý chí sắt đá của quân dân ta trước mọi hiểm nguy. Những câu chuyện được kể lại bằng niềm cảm phục sâu sắc, không chỉ làm sống dậy hào khí của một thời kỳ lịch sử mà còn truyền tải những bài học nhân văn về lòng hiếu nghĩa, sự dũng cảm và tinh thần yêu nước bất diệt. Đây là món quà tinh thần quý giá để thế hệ trẻ soi rọi, hiểu rõ giá trị của độc lập, tự do và tiếp nối truyền thống hào hùng, góp phần xây dựng và bảo vệ tổ quốc trong thời đại mới."
+    },
+    s10: { 
+        title: "Làng nghề truyền thống", 
+        content: "Đồng Tháp không chỉ nổi tiếng bởi cảnh sắc thiên nhiên mà còn bởi những làng nghề truyền thống lâu đời đầy sáng tạo. Cuốn sách đưa độc giả thăm thú các làng nghề như đan lát lục bình ở huyện Tháp Mười, nghề dệt choàng ở Hồng Ngự, làng hoa kiểng Sa Đéc... Mỗi làng nghề là một bức tranh sống động về bàn tay khéo léo và trí tuệ của người dân lao động. Độc giả sẽ được tìm hiểu quy trình tạo ra những sản phẩm từ khâu chọn nguyên liệu tự nhiên cho đến kỹ thuật thủ công tỉ mỉ để hoàn thiện một tác phẩm. Không chỉ là nơi sản xuất, các làng nghề còn lưu giữ những nét đẹp văn hóa cộng đồng, nơi các thế hệ ông bà, cha mẹ truyền dạy kỹ năng cho con cháu. Sách cũng phản ánh những thách thức mà các làng nghề đang đối mặt trong quá trình hội nhập, cũng như những nỗ lực đổi mới để sản phẩm trở thành mặt hàng xuất khẩu có giá trị. Thông qua những hình ảnh chân thực và câu chuyện đời thường, cuốn sách khơi dậy lòng tự hào về di sản văn hóa phi vật thể, khuyến khích sự bảo tồn và phát triển các làng nghề – niềm tự hào về tinh thần sáng tạo và sự khéo léo của người dân Đồng Tháp."
+    },
+    s11: { 
+        title: "Chợ quê Nam Bộ", 
+        content: "Chợ quê Nam Bộ, đặc biệt là văn hóa chợ nổi, là một nét đặc trưng không thể trộn lẫn của vùng sông nước Đồng Tháp. Cuốn sách dẫn dắt độc giả trải nghiệm nhịp sống sôi động trên các dòng sông, nơi hàng trăm chiếc ghe thuyền tụ họp, tạo thành một thị trường sầm uất trên mặt nước. Từ sáng sớm tinh mơ đến khi chiều tà, chợ nổi không chỉ là nơi giao thương hàng hóa, nông sản mà còn là trung tâm văn hóa nơi người dân chia sẻ những buồn vui, gắn kết tình làng nghĩa xóm. Tác giả miêu tả tỉ mỉ nét văn hóa 'cây bẹo' độc đáo, những món ăn dân dã đậm chất miền Tây bày bán trên ghe, và tiếng gọi nhau í ới của người mua kẻ bán. Cuốn sách còn khắc họa sự thay đổi của chợ nổi trước sức ép của đô thị hóa và hiện đại hóa, đồng thời nhấn mạnh giá trị văn hóa cần được gìn giữ. Qua đó, độc giả sẽ thấu hiểu sâu sắc hơn về lối sống hào phóng, trọng tình trọng nghĩa và sự linh hoạt thích nghi của người dân Nam Bộ. Đây là một hành trình văn hóa thú vị, giúp mọi người thêm yêu nét đẹp bình dị, gần gũi của những phiên chợ quê đã đi vào tiềm thức bao thế hệ."
+    },
+    s12: { 
+        title: "Đường về Cao Lãnh", 
+        content: "Cuốn sách là một bức tranh sinh động về hành trình chuyển mình của đô thị Cao Lãnh – từ một thị xã nhỏ bé bên dòng sông Tiền trở thành một đô thị hiện đại, xanh, sạch và phát triển bền vững. Tác giả dẫn dắt độc giả qua những cung đường, từ những con phố cũ với những mái nhà lợp ngói mang dấu ấn thời gian, đến những khu đô thị mới với hạ tầng hiện đại, đường xá khang trang. Sách không chỉ tập trung vào sự phát triển về kinh tế, hạ tầng mà còn làm nổi bật sự phát triển về văn hóa, giáo dục và chất lượng cuộc sống của người dân. Thông qua các buổi trò chuyện với người dân địa phương, những góc nhìn về sự thay đổi trong cách sống, cách tư duy, cuốn sách phản ánh khát vọng vươn lên mạnh mẽ của người dân Cao Lãnh. Đồng thời, sách cũng đề cập đến những thách thức về bảo tồn di sản giữa làn sóng đô thị hóa. Với cách kể chuyện nhẹ nhàng nhưng sâu sắc, độc giả sẽ thấy được một Cao Lãnh năng động, nghĩa tình và đầy tiềm năng trong tương lai. Đây là tài liệu thú vị cho bất cứ ai muốn tìm hiểu về sự phát triển của một đô thị điển hình tại vùng Đồng bằng sông Cửu Long."
+    },
+    s13: { 
+        title: "Ký ức chiến tranh", 
+        content: "Những trang sử hào hùng trong cuộc đấu tranh giữ nước tại Đồng Tháp được tái hiện qua những ký ức đầy cảm xúc của các cựu chiến binh. Cuốn sách không khô khan bởi các số liệu, mà được xây dựng từ những lời kể chân thực về những đêm hành quân trong rừng tràm ngập nước, những trận đánh du kích ác liệt và sự hy sinh thầm lặng của những người lính. Từ câu chuyện của những người mẹ, người vợ hậu phương vững chắc, đến sự trưởng thành của những chiến sĩ trẻ, tất cả tạo nên một bức tranh về lòng yêu nước nồng nàn. Sách đi sâu vào những góc khuất, những tâm tư và nỗi niềm của người lính khi đối diện với bom đạn và nỗi đau mất mát, nhưng trên tất cả là tinh thần lạc quan, tin tưởng vào ngày chiến thắng. Qua những trang viết, độc giả không chỉ thấu hiểu sự tàn khốc của chiến tranh mà còn trân trọng hơn giá trị của hòa bình hôm nay. Đây là lời tri ân sâu sắc đến những người đã ngã xuống, đồng thời là bài học lịch sử sống động, khơi dậy tinh thần tự hào dân tộc và ý chí bảo vệ tổ quốc trong lòng thế hệ trẻ, những người đang thụ hưởng thành quả từ những hy sinh cao cả đó."
+    }
+};
 
         let currentActiveBook = null;
         let studentPoints = 120;
@@ -635,9 +687,10 @@ font-size:12px;
                 <div style="font-weight: bold; font-size: 15px; color: var(--dark-green);">📚 Bạn đang xem: ${book.title}</div>
                 <div class="reading-view">${book.content}</div>
                 <div class="share-toolbar">
-                    <button class="share-btn fb-btn" onclick="shareFacebook('${book.title}','${book.content}')"><i class="fab fa-facebook-f"></i> Facebook</button>
-                    <button class="share-btn zalo-btn" onclick="shareZalo('${book.title}','${book.content}')">Zalo</button>
-                    <button class="share-btn copy-btn" onclick="copyArticle('${book.title}','${book.content}')"><i class="fa-solid fa-copy"></i> Sao chép</button>
+                    <button class="share-btn fb-btn" onclick="shareFacebookById('${bookId}')"><i class="fab fa-facebook-f"></i> Facebook</button>
+                    <button class="share-btn zalo-btn" onclick="shareZaloById('${bookId}')">Zalo</button>
+                    <button class="share-btn copy-btn" onclick="copyArticleById('${bookId}')"><i class="fa-solid fa-copy"></i> Sao chép</button>
+                <button class="share-btn question-btn" onclick="showQuestionCard('${bookId}')"><i class="fa-solid fa-circle-question"></i> Câu hỏi</button>
                 </div>
             `;
             chatBox.appendChild(bookMsg);
@@ -718,16 +771,37 @@ font-size:12px;
         function closePopup() { document.getElementById('map-popup').style.display = 'none'; }
         function answerQuiz(isCorrect) { if(isCorrect) alert("Chúc mừng bạn trả lời đúng!"); }
     
+
+
+function shareFacebookById(bookId){
+    const book = bookDatabase[bookId];
+    if(book) shareFacebook(book.title, book.content);
+}
+
+function shareZaloById(bookId){
+    const book = bookDatabase[bookId];
+    if(book) shareZalo(book.title, book.content);
+}
+
+function copyArticleById(bookId){
+    const book = bookDatabase[bookId];
+    if(book) copyArticle(book.title, book.content);
+}
+
 function shareFacebook(title,content){
- const text = title + "\n\n" + content;
- const url = "https://www.facebook.com/sharer/sharer.php?quote=" + encodeURIComponent(text) + "&u=" + encodeURIComponent(location.href);
- window.open(url,"_blank");
+ const text = "📚 " + title + "\n\n" + content;
+ navigator.clipboard.writeText(text).then(function(){
+   alert("Đã sao chép nội dung bài đọc.\n\nFacebook không cho phép website đăng trực tiếp nội dung. Sau khi Facebook mở ra, nhấn Ctrl+V để dán bài viết.");
+   window.open("https://www.facebook.com/","_blank");
+ });
 }
 
 function shareZalo(title,content){
- const text = title + "\n\n" + content;
- const url = "https://zalo.me/share?text=" + encodeURIComponent(text);
- window.open(url,"_blank");
+ const text = "📚 " + title + "\n\n" + content;
+ navigator.clipboard.writeText(text).then(function(){
+   alert("Đã sao chép nội dung bài đọc.\n\nSau khi Zalo mở ra, nhấn Ctrl+V để gửi.");
+   window.open("https://chat.zalo.me/","_blank");
+ });
 }
 
 function copyArticle(title,content){
@@ -736,5 +810,62 @@ function copyArticle(title,content){
 }
 
 </script>
+
+<script>
+const bookQuestions={
+gothap:[{q:"Gò Tháp gắn liền với nền văn hóa cổ nào?",a:["Óc Eo","Đông Sơn","Sa Huỳnh"],c:0},{q:"Gò Tháp thuộc huyện nào của Đồng Tháp?",a:["Cao Lãnh","Tháp Mười","Tam Nông"],c:1},{q:"Ai từng xây dựng căn cứ kháng chiến tại Gò Tháp?",a:["Thiên Hộ Dương","Nguyễn Trung Trực","Trương Định"],c:0}],
+xeoquit:[{q:"Xẻo Quít nổi tiếng với hệ sinh thái nào?",a:["Rừng tràm ngập nước","Rừng thông","Rừng đước"],c:0},{q:"Xẻo Quít là căn cứ kháng chiến thời kỳ nào?",a:["Chống Mỹ","Chống Nguyên","Chống Minh"],c:0},{q:"Ngày nay Xẻo Quít là?",a:["Khu công nghiệp","Di tích lịch sử sinh thái","Khu đô thị"],c:1}],
+phobang:[{q:"Nguyễn Sinh Sắc là thân sinh của ai?",a:["Võ Thị Sáu","Hồ Chí Minh","Phan Bội Châu"],c:1},{q:"Nguyễn Sinh Sắc từng làm nghề gì tại Đồng Tháp?",a:["Bốc thuốc","Đánh cá","Buôn bán"],c:0},{q:"Di tích của cụ nằm tại đâu?",a:["Sa Đéc","Cao Lãnh","Hồng Ngự"],c:1}],
+s4:[{q:"Văn hóa Óc Eo phát triển mạnh ở vùng nào?",a:["Nam Bộ","Tây Bắc","Bắc Trung Bộ"],c:0},{q:"Văn hóa Óc Eo nổi tiếng về?",a:["Thương mại cổ","Công nghiệp hiện đại","Hàng không"],c:0},{q:"Nhiều di tích Óc Eo được tìm thấy ở?",a:["Đồng bằng sông Cửu Long","Tây Nguyên","Đông Bắc"],c:0}],
+s5:[{q:"Đồng Tháp Mười nổi tiếng với loài hoa nào?",a:["Sen","Mai","Lan"],c:0},{q:"Đồng Tháp Mười thuộc vùng sinh thái nào?",a:["Ngập nước","Núi cao","Biển đảo"],c:0},{q:"Mùa nước nổi thường mang lại điều gì?",a:["Nguồn lợi thủy sản","Băng tuyết","Hạn hán"],c:0}],
+s6:[{q:"Khẩn hoang nghĩa là gì?",a:["Mở đất khai hoang","Xây lâu đài","Đánh trận"],c:0},{q:"Người dân khai hoang để làm gì?",a:["Lập làng, sản xuất","Du lịch","Đóng tàu"],c:0},{q:"Khẩn hoang góp phần hình thành?",a:["Nhiều vùng dân cư mới","Sa mạc","Núi lửa"],c:0}],
+s7:[{q:"Hò Đồng Tháp thuộc loại hình gì?",a:["Dân ca","Nhạc Rock","Opera"],c:0},{q:"Hò thường gắn với?",a:["Lao động","Thể thao","Điện ảnh"],c:0},{q:"Hò Đồng Tháp phản ánh điều gì?",a:["Đời sống người dân","Khoa học vũ trụ","Hàng không"],c:0}],
+s8:[{q:"Hoa sen là biểu tượng của?",a:["Đồng Tháp","Hà Nội","Đà Nẵng"],c:0},{q:"Hoa sen tượng trưng cho?",a:["Thanh cao","Giàu có","Quyền lực"],c:0},{q:"Đồng Tháp còn được gọi là?",a:["Đất Sen Hồng","Xứ Dừa","Xứ Trà"],c:0}],
+s9:[{q:"Anh hùng dân tộc là người?",a:["Có công với đất nước","Giàu nhất nước","Ca sĩ nổi tiếng"],c:0},{q:"Anh hùng góp phần?",a:["Bảo vệ Tổ quốc","Xây sân vận động","Buôn bán"],c:0},{q:"Chúng ta cần làm gì?",a:["Biết ơn và học tập","Lãng quên","Tránh tìm hiểu"],c:0}],
+s10:[{q:"Làng nghề lục bình sản xuất gì?",a:["Đồ thủ công","Ô tô","Máy bay"],c:0},{q:"Làng nghề giúp?",a:["Tạo việc làm","Gây ô nhiễm","Giảm dân số"],c:0},{q:"Nghề truyền thống cần được?",a:["Bảo tồn","Xóa bỏ","Thay thế hoàn toàn"],c:0}],
+s11:[{q:"Chợ quê Nam Bộ thường họp ở đâu?",a:["Ven sông","Trên núi","Trong hang"],c:0},{q:"Chợ nổi sử dụng phương tiện gì?",a:["Ghe thuyền","Tàu hỏa","Máy bay"],c:0},{q:"Chợ quê phản ánh?",a:["Văn hóa địa phương","Công nghệ cao","Thể thao"],c:0}],
+s12:[{q:"Cao Lãnh là?",a:["Thành phố của Đồng Tháp","Tỉnh mới","Huyện miền núi"],c:0},{q:"Cao Lãnh nổi tiếng với?",a:["Sen hồng","Biển xanh","Tuyết trắng"],c:0},{q:"Cao Lãnh đang phát triển theo hướng?",a:["Đô thị hiện đại","Hoang mạc","Rừng nguyên sinh"],c:0}],
+s13:[{q:"Ký ức chiến tranh giúp chúng ta?",a:["Hiểu lịch sử","Quên lịch sử","Bỏ học"],c:0},{q:"Chiến tranh đã tạo nên?",a:["Những tấm gương anh hùng","Khu vui chơi","Sân golf"],c:0},{q:"Học lịch sử để?",a:["Biết ơn thế hệ trước","Tránh học tập","Giải trí"],c:0}]
+};
+
+let score=0;
+function showQuestionCard(bookId){
+const list=bookQuestions[bookId];
+if(!list){alert("Chưa có câu hỏi cho sách này");return;}
+const data=list[Math.floor(Math.random()*list.length)];
+const chatBox=document.getElementById("chat-box");
+const card=document.createElement("div");
+card.className="msg bot";
+let h='<div class="question-card"><div class="question-title">🎯 Câu hỏi tương tác</div><div class="question-text">'+data.q+'</div>';
+data.a.forEach((ans,i)=>{
+h+='<button class="question-option" onclick="checkAnswer(this,'+i+','+data.c+')">'+String.fromCharCode(65+i)+'. '+ans+'</button>';
+});
+h+='</div>';
+card.innerHTML=h;
+chatBox.appendChild(card);
+chatBox.scrollTop=chatBox.scrollHeight;
+}
+function checkAnswer(btn,index,correct){
+const options=btn.parentElement.querySelectorAll(".question-option");
+options.forEach(o=>o.disabled=true);
+if(index===correct){btn.classList.add("correct");score+=10;alert("🎉 Chính xác! +10 điểm");}
+else{btn.classList.add("wrong");options[correct].classList.add("correct");alert("❌ Chưa chính xác");}
+}
+</script>
+
+
+<script>
+(function(){
+    let count = localStorage.getItem('besen_visit_count') || 0;
+    count = parseInt(count) + 1;
+    localStorage.setItem('besen_visit_count', count);
+    window.addEventListener('load', function(){
+        const el = document.getElementById('visitorCount');
+        if(el) el.textContent = count.toLocaleString('vi-VN');
+    });
+})();
+</script>
+
 </body>
 </html>
+<!-- Updated bookshelf text horizontal -->
