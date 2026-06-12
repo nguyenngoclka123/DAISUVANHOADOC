@@ -744,28 +744,54 @@ animation:pulseVisit 2s infinite;
             }
         }
 
-        function sendMessage() {
-            const input = document.getElementById('user-input');
-            const chatBox = document.getElementById('chat-box');
-            if (input.value.trim() === "") return;
+        
+function sendMessage() {
+    const input = document.getElementById('user-input');
+    const chatBox = document.getElementById('chat-box');
+    if (input.value.trim() === "") return;
 
-            const userMsg = document.createElement('div');
-            userMsg.className = "msg user";
-            userMsg.innerText = input.value;
-            chatBox.appendChild(userMsg);
+    const userMsg = document.createElement('div');
+    userMsg.className = "msg user";
+    userMsg.innerText = input.value;
+    chatBox.appendChild(userMsg);
 
-            let val = input.value.toLowerCase();
-            input.value = "";
-            chatBox.scrollTop = chatBox.scrollHeight;
+    let keyword = input.value.toLowerCase().trim();
+    input.value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
 
-            setTimeout(() => {
-                if(val.includes("gò tháp")) selectBook('gothap');
-                else if(val.includes("xẻo quít")) selectBook('xeoquit');
-                else if(val.includes("phó bảng")) selectBook('phobang');
-            }, 500);
+    setTimeout(() => {
+        let found = null;
+
+        for (const [id, book] of Object.entries(bookDatabase)) {
+            const title = book.title.toLowerCase();
+
+            if (title.includes(keyword) || keyword.includes(title)) {
+                found = id;
+                break;
+            }
+
+            const words = keyword.split(/\s+/);
+            const matchCount = words.filter(w => w.length > 1 && title.includes(w)).length;
+
+            if (matchCount >= Math.max(1, Math.ceil(words.length / 2))) {
+                found = id;
+                break;
+            }
         }
 
-        function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
+        if (found) {
+            selectBook(found);
+        } else {
+            const botMsg = document.createElement('div');
+            botMsg.className = "msg bot";
+            botMsg.innerHTML = "📚 Không tìm thấy sách phù hợp. Hãy nhập tên sách hoặc từ khóa.";
+            chatBox.appendChild(botMsg);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }, 300);
+}
+
+function handleKeyPress(e) { if (e.key === 'Enter') sendMessage(); }
         function simulateVoice() { alert("Chức năng ghi âm đang kết nối microphone!"); }
         function showMapPopup(title, desc) { document.getElementById('pop-title').innerText = title; document.getElementById('pop-desc').innerText = desc; document.getElementById('map-popup').style.display = 'block'; }
         function closePopup() { document.getElementById('map-popup').style.display = 'none'; }
